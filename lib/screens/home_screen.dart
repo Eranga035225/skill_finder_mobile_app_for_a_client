@@ -18,7 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Image(image: AssetImage('assets/images/homescreen.png', ),fit:BoxFit.fitWidth,
           width:double.infinity ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal:0, vertical:8),
+            padding: const EdgeInsets.symmetric(horizontal:15, vertical:8),
             child: Column(
               children: [
                 Text('Find and hire local service providers', 
@@ -29,17 +29,26 @@ class _HomeScreenState extends State<HomeScreen> {
                   fontWeight: FontWeight.w500,
                   
                 ),),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text('Connect with skilled professionals for all your home service needs', 
-            style:TextStyle(color:Colors.grey.shade800,
-            fontSize: 17
-            ),
-            textAlign: TextAlign.center,),
-          )
+                SizedBox(height:20),
+                Text('Connect with skilled professionals for all your home service needs', 
+                    style:TextStyle(color:Colors.grey.shade800,
+                    fontSize: 17
+                    ),
+                    textAlign: TextAlign.center,),
+                SizedBox(height:20),
+                CustomButton(buttonColor: Color.fromARGB(255, 3, 151, 151),text:'Sign Up'),
+                SizedBox(height:15),
+                CustomButton(buttonColor: Colors.grey.shade200, text: 'Log in'),
+                SizedBox(height:200),
+                
+                Text('By continuing you agree to our Terms of Service and Privacy Policy', style:TextStyle(color:Colors.grey.shade600),
+                textAlign: TextAlign.center,)  
+                    
+                        ],
+                      ),
+                    ),
+                
+                
 
           
           
@@ -51,5 +60,29 @@ class _HomeScreenState extends State<HomeScreen> {
       )
 
     );
+  }
+}
+
+class CustomButton extends StatelessWidget {
+  Color buttonColor;
+  String text;
+
+   CustomButton({
+    super.key,
+    required this.buttonColor,
+    required this.text,
+
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+          width:  MediaQuery.of(context).size.width , 
+          height: 50,
+          decoration: BoxDecoration(
+            color:buttonColor,
+            borderRadius: BorderRadius.circular(10)
+          ),
+          child:Center(child: Text(text, style:TextStyle(color: Colors.black, fontSize: 18,fontWeight: FontWeight.w500))));
   }
 }
