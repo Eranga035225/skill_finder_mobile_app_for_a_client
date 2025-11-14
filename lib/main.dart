@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_finder/screens/service_provider_list.dart';
 
 import 'screens/splash_screen.dart';
 
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       ),
 
       debugShowCheckedModeBanner: false,
-      home: SplashScreen(),
+      home: ServiceProviderList(),
     );
   }
 }
