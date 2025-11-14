@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+import '../components/custom_button.dart';
+import '../utils/custom_colors.dart';
+
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
 
@@ -31,12 +34,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),),
                 SizedBox(height:20),
                 Text('Connect with skilled professionals for all your home service needs', 
-                    style:TextStyle(color:Colors.grey.shade800,
+                    style:TextStyle(color:const Color.fromARGB(255, 12, 4, 4),
                     fontSize: 17
                     ),
                     textAlign: TextAlign.center,),
                 SizedBox(height:20),
-                CustomButton(buttonColor: Color.fromARGB(255, 3, 151, 151),text:'Sign Up'),
+                CustomButton(buttonColor: CustomColors.primaryColor,text:'Sign Up'),
                 SizedBox(height:15),
                 CustomButton(buttonColor: Colors.grey.shade200, text: 'Log in'),
                 SizedBox(height:200),
@@ -63,26 +66,3 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 }
 
-class CustomButton extends StatelessWidget {
-  Color buttonColor;
-  String text;
-
-   CustomButton({
-    super.key,
-    required this.buttonColor,
-    required this.text,
-
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-          width:  MediaQuery.of(context).size.width , 
-          height: 50,
-          decoration: BoxDecoration(
-            color:buttonColor,
-            borderRadius: BorderRadius.circular(10)
-          ),
-          child:Center(child: Text(text, style:TextStyle(color: Colors.black, fontSize: 18,fontWeight: FontWeight.w500))));
-  }
-}
