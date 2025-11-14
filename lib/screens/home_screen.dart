@@ -12,23 +12,21 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body:
-      SafeArea(
-        child: Column(
-          children: [
-            Image(image: AssetImage('homescreen.png')),
-            
-            Text('Find and Hire local service Providers', style: TextStyle(
-              color: Colors.black
-            ),),
-            Text('Connect with skilled professionals for all your home service needs', style:TextStyle(color:Colors.black))
-            
-            
-            
-        
-          ],
+      Column(
+        children: [
+          Image(image: AssetImage('assets/images/homescreen.png', ),fit:BoxFit.fitWidth,
+          width:double.infinity ),
+          Text('Find and Hire local service Providers', style: TextStyle(
+            color: Colors.black
+          ),),
+          Text('Connect with skilled professionals for all your home service needs', style:TextStyle(color:Colors.black))
           
+          
+          
+      
+        ],
         
-        ),
+      
       )
 
     );
