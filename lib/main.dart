@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:skill_finder/screens/home_screen.dart';
 
 import 'screens/splash_screen.dart';
 
@@ -15,16 +14,11 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-     
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(
-      )
-      
-      );
 
-    
+      debugShowCheckedModeBanner: false,
+      home: SplashScreen(),
+    );
   }
 }
