@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_finder/screens/categories_screen.dart';
 
 import '../components/custom_button.dart';
 import '../utils/custom_colors.dart';
@@ -39,7 +40,12 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     textAlign: TextAlign.center,),
                 SizedBox(height:20),
-                CustomButton(buttonColor: CustomColors.primaryColor,text:'Sign Up'),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CategoriesScreen(),));
+
+                  },
+                  child: CustomButton(buttonColor: CustomColors.primaryColor,text:'Sign Up')),
                 SizedBox(height:15),
                 CustomButton(buttonColor: Colors.grey.shade200, text: 'Log in'),
                 SizedBox(height:200),
