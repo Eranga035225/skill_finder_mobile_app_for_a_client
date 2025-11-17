@@ -55,7 +55,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
           final category = Categories.categories[index];
 
             return Container(
-            width: size.width *0.35,
+            width: size.width *0.3,
             height:2,
 
             decoration: BoxDecoration(
@@ -68,13 +68,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
            ),
            child: Center(child: 
            Row(
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
+              SizedBox(width: 27,),
               category.icon,
               SizedBox(width: 10,),
               Text(category.type, style: TextStyle(
                 fontSize: 16,
-                fontWeight: FontWeight.w500
+                fontWeight: FontWeight.w400,
+                color: Colors.grey.shade800,
               ),)
 
 
