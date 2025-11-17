@@ -42,12 +42,17 @@ class _HomeScreenState extends State<HomeScreen> {
                 SizedBox(height:20),
                 GestureDetector(
                   onTap: (){
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => CategoriesScreen(),));
+                   
 
                   },
                   child: CustomButton(buttonColor: CustomColors.primaryColor,text:'Sign Up')),
                 SizedBox(height:15),
-                CustomButton(buttonColor: Colors.grey.shade200, text: 'Log in'),
+                GestureDetector(
+                  onTap: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => CategoriesScreen(),));
+
+                  },
+                  child: CustomButton(buttonColor: Colors.grey.shade200, text: 'Log in')),
                 SizedBox(height:200),
                 
                 Text('By continuing you agree to our Terms of Service and Privacy Policy', style:TextStyle(color:Colors.grey.shade600),
