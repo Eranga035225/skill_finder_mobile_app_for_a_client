@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../utils/categories.dart';
+
 class CategoriesScreen extends StatefulWidget {
   const CategoriesScreen({super.key});
 
@@ -41,16 +43,21 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 14,vertical: 20),
         child: GridView.builder(
+
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 2,
             childAspectRatio: 3, 
             mainAxisSpacing: 14,      // vertical spacing
             crossAxisSpacing: 14,  
             ),
-          itemCount:6,
-          itemBuilder: (context, index)=> Container(
+          itemCount:Categories.categories.length,
+          itemBuilder: (context, index){
+          final category = Categories.categories[index];
+
+            return Container(
             width: size.width *0.35,
             height:2,
+
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(10),
@@ -62,24 +69,23 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
            child: Center(child: 
            Row(
             mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              category.icon,
+              SizedBox(width: 10,),
+              Text(category.type, style: TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w500
+              ),)
+
+
+          
+            ],
            
         
            ),)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        
-            
-        )
+     
+        );
+          }
             ),
       )
     );
