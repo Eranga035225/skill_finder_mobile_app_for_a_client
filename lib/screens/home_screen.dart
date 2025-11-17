@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:skill_finder/screens/auth_screen.dart';
+import 'package:skill_finder/screens/service_provider_list.dart';
+import '../components/custom_button.dart';
+import '../utils/custom_colors.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
             width: double.infinity,
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 0, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 8),
             child: Column(
               children: [
                 Text(
@@ -32,15 +36,48 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+                SizedBox(height: 20),
+                Text(
+                  'Connect with skilled professionals for all your home service needs',
+                  style: TextStyle(
+                    color: const Color.fromARGB(255, 12, 4, 4),
+                    fontSize: 17,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(height: 20),
+                CustomButton(
+                  buttonColor: CustomColors.primaryColor,
+                  text: 'Sign Up',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => AuthScreen()),
+                    );
+                  },
+                ),
+                SizedBox(height: 15),
+                CustomButton(
+                  buttonColor: Colors.grey.shade200,
+                  text: 'Log in',
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            AuthScreen(authScreenType: 'signin'),
+                      ),
+                    );
+                  },
+                ),
+                SizedBox(height: 200),
+
+                Text(
+                  'By continuing you agree to our Terms of Service and Privacy Policy',
+                  style: TextStyle(color: Colors.grey.shade600),
+                  textAlign: TextAlign.center,
+                ),
               ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8),
-            child: Text(
-              'Connect with skilled professionals for all your home service needs',
-              style: TextStyle(color: Colors.grey.shade800, fontSize: 17),
-              textAlign: TextAlign.center,
             ),
           ),
         ],
