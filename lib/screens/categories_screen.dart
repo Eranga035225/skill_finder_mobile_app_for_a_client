@@ -72,7 +72,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             children: [
               SizedBox(width: 27,),
               category.icon,
-              SizedBox(width: 10,),
+              SizedBox(width: 15,),
               Text(category.type, style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,
