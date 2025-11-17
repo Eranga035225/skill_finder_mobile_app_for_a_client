@@ -8,8 +8,10 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size; 
     return Scaffold(
       backgroundColor: Colors.white,
       bottomNavigationBar: BottomNavigationBar(
@@ -36,27 +38,49 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
       ),
 
-      body: GridView.builder(
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-        itemCount: 10,
-        itemBuilder: (context, index)=> Container(
-          
-
-
-
-         )
-
-
-
-      
-
-
-
-
-
-
-
-    
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 14,vertical: 20),
+        child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            childAspectRatio: 3, 
+            mainAxisSpacing: 14,      // vertical spacing
+            crossAxisSpacing: 14,  
+            ),
+          itemCount:6,
+          itemBuilder: (context, index)=> Container(
+            width: size.width *0.35,
+            height:2,
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: Colors.grey,
+                width: 1,
+              )
+           ),
+           child: Center(child: 
+           Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+           
+        
+           ),)
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+            
+        )
+            ),
       )
     );
   }
