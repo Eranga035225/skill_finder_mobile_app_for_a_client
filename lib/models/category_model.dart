@@ -10,7 +10,7 @@ class Category {
       required this.icon,
 
     }
-  )
+  );
 
 
 }
