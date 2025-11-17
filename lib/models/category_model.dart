@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
 class Category {
-  final String type;
-  static Icon? icon;
+   String type;
+   Icon icon;
 
   Category(
     {
       required this.type,
-      required this.icon = null
-
-
-
+      required this.icon,
 
     }
   )
 
 
-
 }
+
+
+
+
