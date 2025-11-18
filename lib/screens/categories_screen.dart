@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:skill_finder/screens/profile_screen.dart';
 
 import '../utils/categories.dart';
 
@@ -22,7 +23,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
       [
         BottomNavigationBarItem(icon: Icon(Icons.home), label:'Categories' ),
         BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label:'Bookings' ),
-        BottomNavigationBarItem(icon: Icon(Icons.person), label:'Profile' ),
+        BottomNavigationBarItem(icon: GestureDetector(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(),));
+          },
+          
+          
+          child: Icon(Icons.person)), label:'Profile' ),
 
       ]
 
