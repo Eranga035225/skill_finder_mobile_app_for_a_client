@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -21,45 +22,60 @@ class _ProfileScreenState extends State<ProfileScreen> {
         centerTitle: true,
       ),
 
-   body: Column(
-     children: [
-       Align(
-        alignment: Alignment.topCenter,
-         child: Column(
-             // push content to top
-           crossAxisAlignment: CrossAxisAlignment.center, // center horizontally
-           children: [
-            SizedBox(height: 20),
-             CircleAvatar(
-               radius: 80,
-               backgroundImage: AssetImage('assets/images/profile_icon.png'),
-             ),
-             SizedBox(height: 20),
-             Text(
-               'Etahn Carter',
-               style: TextStyle(
-                 color: Colors.black,
-                 fontSize: 27,
-                 fontWeight: FontWeight.w500,
+   body: SingleChildScrollView(
+     child: Column(
+       children: [
+         Align(
+          alignment: Alignment.topCenter,
+           child: Column(
+               // push content to top
+             crossAxisAlignment: CrossAxisAlignment.center, // center horizontally
+             children: [
+              SizedBox(height: 20),
+               CircleAvatar(
+                 radius: 80,
+                 backgroundImage: AssetImage('assets/images/profile_icon.png'),
                ),
-             ),
-             Text('Electrician', style: TextStyle(
-              color: Colors.grey,
-              fontSize: 18,
-             ),),
-             Text('5 years of experience', style: TextStyle(
-              color: Colors.grey,
-              fontSize: 18,
-             ),),
-           ],
+               SizedBox(height: 20),
+               Text(
+                 'Etahn Carter',
+                 style: TextStyle(
+                   color: Colors.black,
+                   fontSize: 25,
+                   fontWeight: FontWeight.w500,
+                 ),
+               ),
+               Text('Electrician', style: TextStyle(
+                color: Color(int.parse('0xFF618A8A')),
+                fontSize: 18,
+               ),),
+               Text('5 years of experience', style: TextStyle(
+                color: Color(int.parse('0xFF618A8A')),
+                fontSize: 18,
+               ),),
+             ],
+           ),
          ),
-       ),
-
-
-
-
-       
-     ],
+         SizedBox(height:20),
+         Section1(),
+         section2(),
+         SizedBox(height:20),
+         Padding(
+           padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 6),
+           child: Align(
+            alignment: Alignment.topLeft,
+            
+            child: Text('Portfolio', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),)),
+         ),
+         
+        
+     
+     
+     
+     
+     
+       ],
+     ),
    ),
    
 
@@ -72,3 +88,127 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+
+class section2 extends StatelessWidget {
+  const section2({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+     padding: const EdgeInsets.all(18.0),
+     child: Align(
+      alignment: Alignment.topLeft,
+       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        
+        children: [
+          Text('Services', style:TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+    
+          )),
+    
+          SizedBox(height:13),
+          ListItem(title:'Electrical Wiring',  icon: FaIcon(FontAwesomeIcons.boltLightning)),
+          ListItem(title:'Appliance Installation', icon: FaIcon(FontAwesomeIcons.plug)),
+          ListItem(title:'Lighting Repair', icon: FaIcon(FontAwesomeIcons.lightbulb)),
+    
+    
+       
+       
+       
+        ],
+       
+       ),
+     ),
+           );
+  }
+}
+
+class Section1 extends StatelessWidget {
+  const Section1({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(18.0),
+      child: Align(
+       alignment: Alignment.topLeft,
+        child: Column(
+         crossAxisAlignment: CrossAxisAlignment.start,
+         
+         children: [
+           Text('Contact', style:TextStyle(
+             color: Colors.black,
+             fontSize: 20,
+             fontWeight: FontWeight.w500,
+    
+           )),
+    
+           SizedBox(height:10),
+           ListItem(title:'Email', subtitle:'ethan.carter@email.com', icon: FaIcon(FontAwesomeIcons.envelope)),
+           ListItem(title:'Phone', subtitle:'+1 234 567 8901', icon: FaIcon(FontAwesomeIcons.phone)),
+          
+    
+    
+        
+        
+        
+         ],
+        
+        ),
+      ),
+    );
+  }
+}
+class ListItem extends StatelessWidget {
+  final String title;
+  final String? subtitle;     // nullable
+  final FaIcon icon;
+
+  ListItem({
+    super.key,
+    required this.title,
+    this.subtitle,            // not required
+    required this.icon,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      leading: Container(
+        width: 40,
+        height: 40,
+        decoration: BoxDecoration(
+          color: Color(0xFF618A8A).withAlpha(30),
+          borderRadius: BorderRadius.circular(8),
+        ),
+        child: Center(child: icon),
+      ),
+      
+      title: Text(
+        title,
+        style: TextStyle(
+          color: Colors.black,
+          fontWeight: FontWeight.w400,
+          fontSize: 16,
+        ),
+      ),
+
+      subtitle: subtitle != null 
+        ? Text(
+            subtitle!,
+            style: TextStyle(
+              color: Color(0xFF618A8A),
+            ),
+          )
+        : null,   // if no subtitle → ListTile removes this area automatically
+    );
+  }
+}
+
