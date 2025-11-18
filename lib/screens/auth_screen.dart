@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:skill_finder/components/custom_button.dart';
 import 'package:skill_finder/components/custom_text_field.dart';
+import 'package:skill_finder/providers/auth_state_provider.dart';
+import 'package:skill_finder/screens/categories_screen.dart';
 import 'package:skill_finder/screens/service_provider_list.dart';
 import 'package:skill_finder/utils/custom_colors.dart';
 
@@ -37,70 +40,91 @@ class _AuthScreenState extends State<AuthScreen> {
           child: Icon(Icons.arrow_back_ios_new_rounded),
         ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(15),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            if (authScreenType == 'signup') CustomTextField(label: 'Full Name'),
-            CustomTextField(label: 'Email'),
-            CustomTextField(label: 'Password', isPassword: true),
-            if (authScreenType == 'signup')
-              CustomTextField(label: 'Confirm Password', isPassword: true),
+      body: Consumer<AuthStateProvider>(
+        builder: (context, authProvider, child) {
+          return Padding(
+            padding: const EdgeInsets.all(15),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                if (authScreenType == 'signup')
+                  CustomTextField(
+                    label: 'Full Name',
+                    controller: authProvider.nameController,
+                  ),
+                CustomTextField(
+                  label: 'Email',
+                  controller: authProvider.emailController,
+                ),
+                CustomTextField(
+                  label: 'Password',
+                  isPassword: true,
+                  controller: authProvider.passwordController,
+                ),
+                if (authScreenType == 'signup')
+                  CustomTextField(
+                    label: 'Confirm Password',
+                    isPassword: true,
+                    controller: authProvider.confirmPasswordController,
+                  ),
 
-            SizedBox(height: 16),
-            CustomButton(
-              buttonColor: CustomColors.primaryColor,
-              text: authScreenType == 'signup'
-                  ? 'Sign up'
-                  : authScreenType == 'signin'
-                  ? 'Sign in'
-                  : 'Reset Password',
-              onTap: () {
-                if (authScreenType == 'signup') {
-                } else {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ServiceProviderList(),
+                SizedBox(height: 16),
+                CustomButton(
+                  buttonColor: CustomColors.primaryColor,
+                  text: authScreenType == 'signup'
+                      ? 'Sign up'
+                      : authScreenType == 'signin'
+                      ? 'Sign in'
+                      : 'Reset Password',
+                  onTap: () {
+                    setState(() {
+                      if (authScreenType == 'signup') {
+                        authProvider.signupUser(context);
+                      } else if (authScreenType == 'signin') {
+                        authProvider.signInUser(context);
+                      }
+                    });
+                  },
+                ),
+                SizedBox(height: 16),
+                if (authScreenType == 'signin')
+                  Center(
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          authScreenType = 'signup';
+                        });
+                      },
+                      style: ButtonStyle(
+                        foregroundColor: WidgetStatePropertyAll(
+                          Color(0xFF618A8A),
+                        ),
+                      ),
+                      child: Text("Don't have an account? Sign up"),
                     ),
-                  );
-                }
-              },
-            ),
-            SizedBox(height: 16),
-            if (authScreenType == 'signin')
-              Center(
-                child: TextButton(
-                  onPressed: () {
-                    setState(() {
-                      authScreenType = 'signup';
-                    });
-                  },
-                  style: ButtonStyle(
-                    foregroundColor: WidgetStatePropertyAll(Color(0xFF618A8A)),
                   ),
-                  child: Text("Don't have an account? Sign up"),
-                ),
-              ),
-            if (authScreenType == 'signup')
-              Center(
-                child: TextButton(
-                  onPressed: () {
-                    setState(() {
-                      authScreenType = 'signin';
-                    });
-                  },
+                if (authScreenType == 'signup')
+                  Center(
+                    child: TextButton(
+                      onPressed: () {
+                        setState(() {
+                          authScreenType = 'signin';
+                        });
+                      },
 
-                  style: ButtonStyle(
-                    foregroundColor: WidgetStatePropertyAll(Color(0xFF618A8A)),
+                      style: ButtonStyle(
+                        foregroundColor: WidgetStatePropertyAll(
+                          Color(0xFF618A8A),
+                        ),
+                      ),
+                      child: Text("Already have an account? Sign in"),
+                    ),
                   ),
-                  child: Text("Already have an account? Sign in"),
-                ),
-              ),
-          ],
-        ),
+              ],
+            ),
+          );
+        },
       ),
     );
   }
