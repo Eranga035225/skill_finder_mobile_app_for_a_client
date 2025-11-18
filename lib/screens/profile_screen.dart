@@ -23,58 +23,91 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
 
    body: SingleChildScrollView(
-     child: Column(
-       children: [
-         Align(
-          alignment: Alignment.topCenter,
-           child: Column(
-               // push content to top
-             crossAxisAlignment: CrossAxisAlignment.center, // center horizontally
-             children: [
-              SizedBox(height: 20),
-               CircleAvatar(
-                 radius: 80,
-                 backgroundImage: AssetImage('assets/images/profile_icon.png'),
-               ),
-               SizedBox(height: 20),
-               Text(
-                 'Etahn Carter',
-                 style: TextStyle(
-                   color: Colors.black,
-                   fontSize: 25,
-                   fontWeight: FontWeight.w500,
+     child: Padding(
+       padding: const EdgeInsets.all(8.0),
+       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+         children: [
+           Align(
+            alignment: Alignment.topCenter,
+             child: Column(
+                 // push content to top
+               crossAxisAlignment: CrossAxisAlignment.center, // center horizontally
+               children: [
+                SizedBox(height: 20),
+                 CircleAvatar(
+                   radius: 80,
+                   backgroundImage: AssetImage('assets/images/profile_icon.png'),
                  ),
-               ),
-               Text('Electrician', style: TextStyle(
-                color: Color(int.parse('0xFF618A8A')),
-                fontSize: 18,
-               ),),
-               Text('5 years of experience', style: TextStyle(
-                color: Color(int.parse('0xFF618A8A')),
-                fontSize: 18,
-               ),),
-             ],
+                 SizedBox(height: 20),
+                 Text(
+                   'Etahn Carter',
+                   style: TextStyle(
+                     color: Colors.black,
+                     fontSize: 25,
+                     fontWeight: FontWeight.w500,
+                   ),
+                 ),
+                 Text('Electrician', style: TextStyle(
+                  color: Color(int.parse('0xFF618A8A')),
+                  fontSize: 18,
+                 ),),
+                 Text('5 years of experience', style: TextStyle(
+                  color: Color(int.parse('0xFF618A8A')),
+                  fontSize: 18,
+                 ),),
+               ],
+             ),
            ),
-         ),
-         SizedBox(height:20),
-         Section1(),
-         section2(),
-         SizedBox(height:20),
-         Padding(
-           padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 6),
-           child: Align(
-            alignment: Alignment.topLeft,
-            
-            child: Text('Portfolio', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),)),
-         ),
-         
+           SizedBox(height:20),
+           Section1(),
+           section2(),
+           SizedBox(height:20),
+           Padding(
+     padding: const EdgeInsets.all(18.0),
+     child: Align(
+      alignment: Alignment.topLeft,
+       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         
-     
-     
-     
-     
-     
-       ],
+        children: [
+          Text('Portfolio', style:TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+    
+          )),
+    
+          SizedBox(height:12),
+         
+         
+    
+    
+       
+       
+       
+        ],
+       
+       ),
+     ),
+           )
+           
+          //    padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 6),
+          //    child: Align(
+          //     alignment: Alignment.topLeft,
+              
+          //     child: Text('Portfolio', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),)),
+          //  ),
+       
+       
+          
+       
+       
+       
+       
+       
+         ],
+       ),
      ),
    ),
    
