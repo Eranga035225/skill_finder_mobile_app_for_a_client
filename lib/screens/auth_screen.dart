@@ -18,6 +18,7 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   late String authScreenType;
+  String? selectedRole;
 
   @override
   void initState() {
@@ -68,6 +69,35 @@ class _AuthScreenState extends State<AuthScreen> {
                     isPassword: true,
                     controller: authProvider.confirmPasswordController,
                   ),
+                if (authScreenType == 'signup')
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text("Select Role"),
+                        SizedBox(height: 5),
+                        DropdownButtonFormField<String>(
+                          value: selectedRole,
+                          decoration: InputDecoration(
+                            labelText: "Role",
+                            border: OutlineInputBorder(),
+                          ),
+                          items: ["Admin", "User"].map((role) {
+                            return DropdownMenuItem(
+                              value: role,
+                              child: Text(role),
+                            );
+                          }).toList(),
+                          onChanged: (String? newValue) {
+                            setState(() {
+                              selectedRole = newValue!;
+                            });
+                          },
+                        ),
+                      ],
+                    ),
+                  ),
 
                 SizedBox(height: 16),
                 CustomButton(
@@ -78,15 +108,17 @@ class _AuthScreenState extends State<AuthScreen> {
                       ? 'Sign in'
                       : 'Reset Password',
                   onTap: () {
-                    setState(() {
-                      if (authScreenType == 'signup') {
-                        authProvider.signupUser(context);
-                      } else if (authScreenType == 'signin') {
-                        authProvider.signInUser(context);
-                      }
-                    });
+                    if (authScreenType == 'signup') {
+                      context.read<AuthStateProvider>().signupUser(
+                        context,
+                        selectedRole,
+                      );
+                    } else if (authScreenType == 'signin') {
+                      context.read<AuthStateProvider>().signInUser(context);
+                    }
                   },
                 ),
+
                 SizedBox(height: 16),
                 if (authScreenType == 'signin')
                   Center(

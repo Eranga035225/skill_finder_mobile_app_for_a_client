@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:skill_finder/models/service_provider_model.dart';
 
 class ServiceProviderList extends StatefulWidget {
-  const ServiceProviderList({super.key});
+  final String categoryName;
+  const ServiceProviderList({super.key, required this.categoryName});
 
   @override
   State<ServiceProviderList> createState() => _ServiceProviderListState();
@@ -15,24 +16,28 @@ class _ServiceProviderListState extends State<ServiceProviderList> {
       description: 'Expert carpenter with 10 years of experience',
       image: 'assets/images/carpenter1.png',
       rating: 4.8,
+      category: 'carpenter',
     ),
     ServiceproviderModel(
       name: 'Jane Smith',
       description: 'Professional carpenter specializing in custom furniture',
       image: 'assets/images/carpenter2.png',
       rating: 4.6,
+      category: 'carpenter',
     ),
     ServiceproviderModel(
       name: 'Mike Johnson',
       description: 'Skilled carpenter for home renovations and repairs',
       image: 'assets/images/carpenter3.png',
       rating: 4.9,
+      category: 'electrician',
     ),
     ServiceproviderModel(
       name: 'Emily Davis',
       description: 'Creative carpenter with a focus on modern designs',
       image: 'assets/images/carpenter4.png',
       rating: 4.7,
+      category: 'plumber',
     ),
   ];
   @override
@@ -42,7 +47,7 @@ class _ServiceProviderListState extends State<ServiceProviderList> {
       appBar: AppBar(
         backgroundColor: Colors.white,
         title: Text(
-          'Carpenters',
+          widget.categoryName,
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
         leading: GestureDetector(
@@ -77,7 +82,7 @@ class _ServiceProviderListState extends State<ServiceProviderList> {
               ),
               SizedBox(height: 20),
               Text(
-                'Top Carpenters',
+                'Top ${widget.categoryName}',
                 style: TextStyle(fontSize: 22, fontWeight: FontWeight.w600),
               ),
               SizedBox(height: 15),

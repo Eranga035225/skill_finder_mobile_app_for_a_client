@@ -25,7 +25,7 @@ class AuthStateProvider extends ChangeNotifier {
   final TextEditingController _nameController = TextEditingController();
   TextEditingController get nameController => _nameController;
 
-  Future<void> signupUser(BuildContext context) async {
+  Future<void> signupUser(BuildContext context, String? role) async {
     if (_emailController.text.trim().length < 3) {
       CustomDialogs.showErrorSnackBar(context, 'Email is too short');
     } else if (_passwordController.text.trim().length < 6) {
@@ -36,11 +36,14 @@ class AuthStateProvider extends ChangeNotifier {
         context,
         'Password and Confirm Password do not match',
       );
+    } else if (role == null || role.isEmpty) {
+      CustomDialogs.showErrorSnackBar(context, 'Please select a role');
     } else {
       EasyLoading.show();
       final user = await AuthController().createUserAccount(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
+        role: role,
         context: context,
       );
 
@@ -49,6 +52,7 @@ class AuthStateProvider extends ChangeNotifier {
           email: _emailController.text.trim(),
           name: _nameController.text.trim(),
           uid: user.uid,
+          role: role,
         );
 
         final isSuccess = await UserController().saveUserData(userModel);
@@ -88,25 +92,29 @@ class AuthStateProvider extends ChangeNotifier {
       );
 
       if (user == null) {
+        Logger().w('signInUser: Firebase user is null');
         EasyLoading.dismiss();
         return;
       }
 
+      // Try to fetch user data, but don't block navigation on it
       final userModel = await UserController().fetchUserData();
+      Logger().i('Fetched userModel: $userModel');
 
       if (userModel != null && context.mounted) {
-        // Update provider safely
         Provider.of<UserProvider>(
           context,
           listen: false,
         ).setUserModel(userModel);
-
-        // Navigate safely
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => CategoriesScreen()),
-        );
       }
+
+      if (!context.mounted) return;
+
+      // ✅ Always navigate after successful sign-in
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => CategoriesScreen()),
+      );
     } catch (e) {
       EasyLoading.showError('Sign in failed: $e');
     } finally {
