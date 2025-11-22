@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:skill_finder/models/service_provider_model.dart';
 
@@ -10,36 +11,20 @@ class ServiceProviderList extends StatefulWidget {
 }
 
 class _ServiceProviderListState extends State<ServiceProviderList> {
-  List<ServiceproviderModel> serviceProviders = [
-    ServiceproviderModel(
-      name: 'John Doe',
-      description: 'Expert carpenter with 10 years of experience',
-      image: 'assets/images/carpenter1.png',
-      rating: 4.8,
-      category: 'carpenter',
-    ),
-    ServiceproviderModel(
-      name: 'Jane Smith',
-      description: 'Professional carpenter specializing in custom furniture',
-      image: 'assets/images/carpenter2.png',
-      rating: 4.6,
-      category: 'carpenter',
-    ),
-    ServiceproviderModel(
-      name: 'Mike Johnson',
-      description: 'Skilled carpenter for home renovations and repairs',
-      image: 'assets/images/carpenter3.png',
-      rating: 4.9,
-      category: 'electrician',
-    ),
-    ServiceproviderModel(
-      name: 'Emily Davis',
-      description: 'Creative carpenter with a focus on modern designs',
-      image: 'assets/images/carpenter4.png',
-      rating: 4.7,
-      category: 'plumber',
-    ),
-  ];
+  Stream<List<ServiceProviderModel>> _providersStream() {
+    return FirebaseFirestore.instance
+        .collection('serviceProviders')
+        .where('category', isEqualTo: widget.categoryName.toLowerCase())
+        .snapshots()
+        .map(
+          (snapshot) => snapshot.docs
+              .map(
+                (doc) => ServiceProviderModel.fromMap(doc.id, doc.data()),
+              ) // adjust to your fromMap
+              .toList(),
+        );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,25 +72,40 @@ class _ServiceProviderListState extends State<ServiceProviderList> {
               ),
               SizedBox(height: 15),
               Expanded(
-                child: ListView.builder(
-                  itemCount: serviceProviders.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      leading: CircleAvatar(
-                        backgroundImage: AssetImage(
-                          serviceProviders[index].image,
-                        ),
-                        radius: 30,
-                      ),
-                      title: Text(
-                        serviceProviders[index].name,
-                        style: TextStyle(fontWeight: FontWeight.bold),
-                      ),
-                      subtitle: Text(serviceProviders[index].description),
-                      trailing: Text(
-                        serviceProviders[index].rating.toString(),
-                        style: TextStyle(fontSize: 15),
-                      ),
+                child: StreamBuilder<List<ServiceProviderModel>>(
+                  stream: _providersStream(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(child: CircularProgressIndicator());
+                    }
+
+                    if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return Center(child: Text('No providers found'));
+                    }
+
+                    final providers = snapshot.data!;
+
+                    return ListView.builder(
+                      itemCount: providers.length,
+                      itemBuilder: (context, index) {
+                        final p = providers[index];
+
+                        return ListTile(
+                          leading: CircleAvatar(
+                            radius: 30,
+                            child: Text(p.name.isNotEmpty ? p.name[0] : '?'),
+                          ),
+                          title: Text(
+                            p.name,
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          subtitle: Text(p.email),
+                          trailing: Text(
+                            p.initialRating.toString(),
+                            style: TextStyle(fontSize: 15),
+                          ),
+                        );
+                      },
                     );
                   },
                 ),

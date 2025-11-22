@@ -3,6 +3,7 @@ import 'package:logger/web.dart';
 import 'package:provider/provider.dart';
 import 'package:skill_finder/components/custom_button.dart';
 import 'package:skill_finder/providers/user_provider.dart';
+import 'package:skill_finder/screens/admin/service_providers_add_screen.dart';
 import 'package:skill_finder/screens/service_provider_list.dart';
 import 'package:skill_finder/utils/custom_colors.dart';
 
@@ -118,6 +119,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   text: "Add new Service Provider",
                   onTap: () {
                     Logger().f("Admin Panel Accessed by ${user.name}");
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ServiceProvidersAddScreen(),
+                      ),
+                    );
                   },
                 );
               },
