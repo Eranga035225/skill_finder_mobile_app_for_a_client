@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../utils/custom_colors.dart';
+import 'profile_screen.dart';
+
 class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key});
 
@@ -12,10 +15,35 @@ class _BookingScreenState extends State<BookingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        items: 
+      [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label:'Categories' ),
+        BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label:'Bookings' ),
+        BottomNavigationBarItem(icon: GestureDetector(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(),));
+          },
+          
+          
+          child: Icon(Icons.person)), label:'Profile' ),
+
+      ]
+
+
+      
+      
+      ),
       backgroundColor: Colors.white,
 
       appBar: AppBar(
-        title: Text(' Confirm Booking'),
+        title: Text(' Confirm Booking', style: TextStyle(
+          color:Colors.black,
+          fontSize: 20,
+          fontWeight: FontWeight.w500
+
+        ),),
         centerTitle: true,
         backgroundColor: Colors.white,
       ),
@@ -29,10 +57,11 @@ class _BookingScreenState extends State<BookingScreen> {
         
             Text('Service', style:TextStyle(
               color:Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold
+              fontSize: 18,
+              fontWeight: FontWeight.w500
         
             )),
+            SizedBox(height:20,),
             ListTile(
               leading: Container(
                 width:60,
@@ -42,9 +71,17 @@ class _BookingScreenState extends State<BookingScreen> {
                   borderRadius: BorderRadius.circular(8)
                 ),
                 
-                child: Center(child: FaIcon(FontAwesomeIcons.fan, color: Colors.grey,))),
-              title: Text('Ceiling Fan Installation'),
-              subtitle: Text('Install a new ceiling fan'),
+                child: Center(child: FaIcon(FontAwesomeIcons.fan, color: Colors.black,))),
+              title: Text('Ceiling Fan Installation', style:TextStyle(
+                color:Colors.grey.shade800,
+                fontSize:18,
+                fontWeight: FontWeight.w500,
+              )),
+              subtitle: Text('Install a new ceiling fan', style: TextStyle(
+                color: Colors.grey.shade600,
+                fontSize: 16,
+                fontWeight: FontWeight.w400
+              ),),
                   
             ),
         
@@ -52,27 +89,91 @@ class _BookingScreenState extends State<BookingScreen> {
         
             Text('Provider', style:TextStyle(
               color:Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold
+              fontSize: 18,
+              fontWeight: FontWeight.w500
         
             )),
+            SizedBox(height:20,),
             ListTile(
               leading: CircleAvatar(
                 radius: 30,
                 backgroundImage: AssetImage('assets/images/profile_icon.png', ),
         
               ),
-              title: Text('Ethan Carter'),
-              subtitle: Text('4.9(123 reviews)'),
+              title: Text('Ethan Carter', style:TextStyle(
+                color:Colors.grey.shade800,
+                fontSize:18,
+                fontWeight: FontWeight.w500,
+              )),
+              subtitle: Text('4.9(123 reviews)', style: TextStyle(
+                color: Colors.grey.shade600,
+                fontSize: 16,
+                fontWeight: FontWeight.w400,
+              ),),
         
             ),
             SizedBox(height:20,),
             Text('Date & Time', style:TextStyle(
-              color:Colors.black,
-              fontSize: 20,
-              fontWeight: FontWeight.bold
+             color:Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w500
         
             )), 
+            SizedBox(height:20,),
+            Text('Tue, Jul 23 - 10.00AM - 11.00AM', style:TextStyle(
+              color:Colors.grey.shade800,
+              fontSize:16,
+              fontWeight: FontWeight.w400,
+            )),
+            SizedBox(height:20,),
+            Text('Summary', style:TextStyle(
+              color:Colors.black,
+              fontSize: 18,
+              fontWeight: FontWeight.w500
+        
+            )),
+            SizedBox(height:25,),
+            Row(children: [
+              Text('Service', style:TextStyle(
+                color:CustomColors.primaryColor,
+              )),
+              Spacer(),
+              Text('Ceiling Fan Installation'),
+
+            ],),
+            SizedBox(height:15,),
+            Row(children: [
+              Text('Subtotal', style:TextStyle(
+                color:CustomColors.primaryColor,
+              )),
+              Spacer(),
+              Text('\$120'),
+
+            ],),
+            SizedBox(height:15,),
+             Row(children: [
+              Text('Taxes', style:TextStyle(
+                color:CustomColors.primaryColor,
+              )),
+              Spacer(),
+              Text('\$12'),
+
+            ],),
+            SizedBox(height:15,),
+             Row(children: [
+              Text('Total', style:TextStyle(
+                color:CustomColors.primaryColor,
+              )),
+              Spacer(),
+              Text('\$132'),
+
+            ],),
+           
+
+
+
+
+
 
 
            
