@@ -5,6 +5,7 @@ import 'package:skill_finder/components/custom_button.dart';
 import '../models/portfolio_model.dart';
 import '../utils/custom_colors.dart';
 import '../utils/portfolio.dart';
+import 'booking_screen.dart';
 // import 'package:skill_finder/utils/portfolio.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -101,10 +102,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
               children: [
               CustomButton(buttonColor: Colors.grey.shade200, text: 'Message', height: 30, width: 110, textSize: 16,),
              
-              CustomButton(buttonColor:CustomColors.primaryColor, text: 'Book Now', height: 30, width: 110, textSize: 16,),
+              GestureDetector(
+                onTap: (){
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => BookingScreen(),));
+                },
+                child: CustomButton(
+                  buttonColor:CustomColors.primaryColor, text: 'Book Now', height: 30, width: 110, textSize: 16,),
+              ),
              
              
              ],),
+
            )
 
 
