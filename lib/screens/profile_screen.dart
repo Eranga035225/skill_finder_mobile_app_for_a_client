@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:skill_finder/components/custom_button.dart';
 
 import '../models/portfolio_model.dart';
 import '../utils/custom_colors.dart';
@@ -76,13 +77,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                    ),
                  ),
                  Text('Electrician', style: TextStyle(
-                  color: CustomColors.primaryColor,
+                  color: Colors.grey.shade600,
                   fontSize: 18,
                   fontWeight: FontWeight.w300,
                   // fontWeight: FontWeight.w600,
                  ),),
                  Text('5 years of experience', style: TextStyle(
-                  color: CustomColors.primaryColor,
+                   color: Colors.grey.shade600,
                   fontSize: 18,
                  fontWeight: FontWeight.w300,
                  ),),
@@ -93,10 +94,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
            Section1(), //contact section
            Section2(), // services section
            Portfolio_Section(),
-           Row(children: [
-            
-
-           ],)
+           Padding(
+             padding: const EdgeInsets.all(16.0),
+             child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+              CustomButton(buttonColor: Colors.grey.shade200, text: 'Message', height: 30, width: 110, textSize: 16,),
+             
+              CustomButton(buttonColor:CustomColors.primaryColor.withAlpha(20), text: 'Book Now', height: 30, width: 110, textSize: 16,),
+             
+             
+             ],),
+           )
 
 
 

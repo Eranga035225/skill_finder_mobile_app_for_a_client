@@ -5,6 +5,7 @@ class CustomButton extends StatelessWidget {
   String text;
  double height;
   double width;
+  double textSize;
 
    CustomButton({
     super.key,
@@ -12,6 +13,7 @@ class CustomButton extends StatelessWidget {
     required this.text,
     required this.height,
     required this.width,
+    this.textSize = 18,
 
   });
 
@@ -24,6 +26,6 @@ class CustomButton extends StatelessWidget {
             color:buttonColor,
             borderRadius: BorderRadius.circular(10)
           ),
-          child:Center(child: Text(text, style:TextStyle(color: Colors.black, fontSize: 18,fontWeight: FontWeight.w500))));
+          child:Center(child: Text(text, style:TextStyle(color: Colors.black, fontSize: textSize,fontWeight: FontWeight.w500))));
   }
 }
