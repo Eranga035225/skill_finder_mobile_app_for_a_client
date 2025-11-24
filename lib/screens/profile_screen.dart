@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+// import 'package:skill_finder/utils/portfolio.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -12,8 +13,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
  
   @override
   Widget build(BuildContext context) {
-    Size size = MediaQuery.of(context).size;
+    // Size size = MediaQuery.of(context).size;
+
     return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        items: 
+      [
+        BottomNavigationBarItem(icon: Icon(Icons.home), label:'Categories' ),
+        BottomNavigationBarItem(icon: Icon(Icons.calendar_month), label:'Bookings' ),
+        BottomNavigationBarItem(icon: GestureDetector(
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(),));
+          },
+          
+          
+          child: Icon(Icons.person)), label:'Profile' ),
+
+      ]
+
+
+      
+      
+      ),
+
       backgroundColor: Colors.white,
       appBar: AppBar(
         leading: BackButton(color: Colors.black),
@@ -51,54 +74,55 @@ class _ProfileScreenState extends State<ProfileScreen> {
                  Text('Electrician', style: TextStyle(
                   color: Color(int.parse('0xFF618A8A')),
                   fontSize: 18,
+                  // fontWeight: FontWeight.w600,
                  ),),
                  Text('5 years of experience', style: TextStyle(
                   color: Color(int.parse('0xFF618A8A')),
                   fontSize: 18,
+                  // fontWeight: FontWeight.w500,
                  ),),
                ],
              ),
            ),
            SizedBox(height:20),
-           Section1(),
-           section2(),
-           SizedBox(height:20),
-           Padding(
-     padding: const EdgeInsets.all(18.0),
-     child: Align(
-      alignment: Alignment.topLeft,
-       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        
-        children: [
-          Text('Portfolio', style:TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-    
-          )),
-    
-          SizedBox(height:12),
-         
-         
-    
-    
-       
-       
-       
-        ],
-       
-       ),
-     ),
-           )
+           Section1(), //contact section
+           Section2(), // services section
            
-          //    padding: const EdgeInsets.symmetric(horizontal: 18.0, vertical: 6),
-          //    child: Align(
-          //     alignment: Alignment.topLeft,
-              
-          //     child: Text('Portfolio', style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),)),
-          //  ),
-       
+           Padding(
+             padding: const EdgeInsets.all(16.0),
+             child: Column(
+               children: [
+                 Text('Portfolio', style:TextStyle(
+                  color: Colors.black,
+                   fontSize: 20,
+                   fontWeight: FontWeight.w500,
+                 
+                 )),
+                SizedBox(height:13),
+                ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemBuilder: (context, index){
+                    return Container(
+                      
+
+                    );
+                  }
+                ),
+
+
+
+               ],
+             ),
+           ),
+
+
+
+
+
+
+          
+           
+        
        
           
        
@@ -122,44 +146,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   }
 }
 
-class section2 extends StatelessWidget {
-  const section2({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-     padding: const EdgeInsets.all(18.0),
-     child: Align(
-      alignment: Alignment.topLeft,
-       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        
-        children: [
-          Text('Services', style:TextStyle(
-            color: Colors.black,
-            fontSize: 20,
-            fontWeight: FontWeight.w500,
-    
-          )),
-    
-          SizedBox(height:13),
-          ListItem(title:'Electrical Wiring',  icon: FaIcon(FontAwesomeIcons.boltLightning)),
-          ListItem(title:'Appliance Installation', icon: FaIcon(FontAwesomeIcons.plug)),
-          ListItem(title:'Lighting Repair', icon: FaIcon(FontAwesomeIcons.lightbulb)),
-    
-    
-       
-       
-       
-        ],
-       
-       ),
-     ),
-           );
-  }
-}
 
 class Section1 extends StatelessWidget {
   const Section1({
@@ -199,6 +185,48 @@ class Section1 extends StatelessWidget {
     );
   }
 }
+
+
+class Section2 extends StatelessWidget {
+  const Section2({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+     padding: const EdgeInsets.all(18.0),
+     child: Align(
+      alignment: Alignment.topLeft,
+       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        
+        children: [
+          Text('Services', style:TextStyle(
+            color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+    
+          )),
+    
+          SizedBox(height:13),
+          ListItem(title:'Electrical Wiring',  icon: FaIcon(FontAwesomeIcons.boltLightning)),
+          ListItem(title:'Appliance Installation', icon: FaIcon(FontAwesomeIcons.plug)),
+          ListItem(title:'Lighting Repair', icon: FaIcon(FontAwesomeIcons.lightbulb)),
+    
+    
+       
+       
+       
+        ],
+       
+       ),
+     ),
+           );
+  }
+}
+
+
 class ListItem extends StatelessWidget {
   final String title;
   final String? subtitle;     // nullable
