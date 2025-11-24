@@ -3,19 +3,23 @@ import 'package:flutter/material.dart';
 class CustomButton extends StatelessWidget {
   Color buttonColor;
   String text;
+ double height;
+  double width;
 
    CustomButton({
     super.key,
     required this.buttonColor,
     required this.text,
+    required this.height,
+    required this.width,
 
   });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-          width:  MediaQuery.of(context).size.width , 
-          height: 50,
+          width: width, 
+          height: height,
           decoration: BoxDecoration(
             color:buttonColor,
             borderRadius: BorderRadius.circular(10)

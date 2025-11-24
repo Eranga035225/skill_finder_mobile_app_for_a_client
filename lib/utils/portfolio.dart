@@ -6,24 +6,24 @@ class Portfolio {
 
     PortfolioModel(
       title: 'Modern Kitchen',
-      imageUrl: 'assets/portfolio/modern_kitchen.png',
+      imageUrl: 'assets/images/portfolio1.jpg',
     ),
     PortfolioModel(
       title: 'Living Room Renovation',
-      imageUrl: 'assets/portfolio/living_room_renovation.png',
+      imageUrl: 'assets/images/portfolio2.jpg',
     ),
         PortfolioModel(
       title: 'Office Lighting Upgrade',
-      imageUrl: 'assets/portfolio/office_lighting_upgrade.png',
+      imageUrl: 'assets/images/portfolio3.jpg',
     ),
-    PortfolioModel(
-      title: 'Smart Home Automation',
-      imageUrl: 'assets/portfolio/smart_home_automation.png',
-    ),
-    PortfolioModel(
-      title: 'Outdoor Garden Lighting',
-      imageUrl: 'assets/portfolio/garden_lighting.png',
-    )
+    // PortfolioModel(
+    //   title: 'Smart Home Automation',
+    //   imageUrl: 'assets/images/portfolio4.jpg',
+    // ),
+    // PortfolioModel(
+    //   title: 'Outdoor Garden Lighting',
+    //   imageUrl: 'assets/images/portfolio5.jpg',
+    // )
     
 
   

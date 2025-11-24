@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../models/portfolio_model.dart';
+import '../utils/custom_colors.dart';
+import '../utils/portfolio.dart';
 // import 'package:skill_finder/utils/portfolio.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -67,19 +71,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
                    'Etahn Carter',
                    style: TextStyle(
                      color: Colors.black,
-                     fontSize: 25,
+                     fontSize: 30,
                      fontWeight: FontWeight.w500,
                    ),
                  ),
                  Text('Electrician', style: TextStyle(
-                  color: Color(int.parse('0xFF618A8A')),
+                  color: CustomColors.primaryColor,
                   fontSize: 18,
+                  fontWeight: FontWeight.w300,
                   // fontWeight: FontWeight.w600,
                  ),),
                  Text('5 years of experience', style: TextStyle(
-                  color: Color(int.parse('0xFF618A8A')),
+                  color: CustomColors.primaryColor,
                   fontSize: 18,
-                  // fontWeight: FontWeight.w500,
+                 fontWeight: FontWeight.w300,
                  ),),
                ],
              ),
@@ -87,33 +92,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
            SizedBox(height:20),
            Section1(), //contact section
            Section2(), // services section
-           
-           Padding(
-             padding: const EdgeInsets.all(16.0),
-             child: Column(
-               children: [
-                 Text('Portfolio', style:TextStyle(
-                  color: Colors.black,
-                   fontSize: 20,
-                   fontWeight: FontWeight.w500,
-                 
-                 )),
-                SizedBox(height:13),
-                ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemBuilder: (context, index){
-                    return Container(
-                      
+           Portfolio_Section(),
+           Row(children: [
+            
 
-                    );
-                  }
-                ),
-
-
-
-               ],
-             ),
-           ),
+           ],)
 
 
 
@@ -142,6 +125,89 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
 
 
+    );
+  }
+}
+
+class Portfolio_Section extends StatelessWidget {
+  const Portfolio_Section({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+       crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text('Portfolio', style:TextStyle(
+           color: Colors.black,
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+          
+          )),
+         SizedBox(height:13),
+      SizedBox(
+               height: 220, // 
+               child: ListView.builder(
+                 scrollDirection: Axis.horizontal,
+                 itemCount: Portfolio.items.length,
+                 itemBuilder: (context, index) {
+                   PortfolioModel portfolio = Portfolio.items[index];
+    
+                   return Container(
+                     width: 180,
+                     margin: EdgeInsets.only(right: 16),
+                     child: Card(
+                       color: Colors.white, // 👈 white background
+                       elevation: 3,
+                       shape: RoundedRectangleBorder(
+                         borderRadius: BorderRadius.circular(16),
+                       ),
+                       child: Column(
+                         crossAxisAlignment: CrossAxisAlignment.start,
+                         children: [
+                         
+                           ClipRRect(
+                             borderRadius: BorderRadius.vertical(top: Radius.circular(16)),
+                             child: Image.asset(
+                               portfolio.imageUrl,
+                               height: 140, // 👈 reduced image height
+                               width: double.infinity,
+                               fit: BoxFit.cover,
+                             ),
+                           ),
+    
+                         
+                           Container(
+                             width: double.infinity,
+                             padding: EdgeInsets.all(12),
+                             decoration: BoxDecoration(
+                               color: Colors.white, // 👈 title area white
+                               borderRadius: BorderRadius.vertical(
+                                 bottom: Radius.circular(16),
+                               ),
+                             ),
+                             child: Text(
+                               portfolio.title,
+                               style: TextStyle(
+                                 color: Colors.black,
+                                 fontWeight: FontWeight.w600,
+                                 fontSize: 15,
+                               ),
+                             ),
+                           ),
+                         ],
+                       ),
+                     ),
+                   );
+                 },
+               ),
+             )
+    
+        ],
+      ),
     );
   }
 }
@@ -246,7 +312,7 @@ class ListItem extends StatelessWidget {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: Color(0xFF618A8A).withAlpha(30),
+          color: CustomColors.primaryColor.withAlpha(20),
           borderRadius: BorderRadius.circular(8),
         ),
         child: Center(child: icon),
@@ -265,7 +331,8 @@ class ListItem extends StatelessWidget {
         ? Text(
             subtitle!,
             style: TextStyle(
-              color: Color(0xFF618A8A),
+              color:CustomColors.primaryColor,
+              fontWeight: FontWeight.w300,
             ),
           )
         : null,   // if no subtitle → ListTile removes this area automatically
