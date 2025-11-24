@@ -95,25 +95,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
            Section1(), //contact section
            Section2(), // services section
            Portfolio_Section(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 18.0),
+              child: CustomButton(buttonColor: Colors.grey.shade200, text: 'Message', textSize: 16, width: double.infinity, height: 45,),
+            ),
+            SizedBox(height:15),
+                      
            Padding(
-             padding: const EdgeInsets.all(16.0),
-             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-              CustomButton(buttonColor: Colors.grey.shade200, text: 'Message', height: 30, width: 110, textSize: 16,),
+             padding: const EdgeInsets.symmetric(horizontal: 18.0),
+             child: GestureDetector(
+               onTap: (){
+                 Navigator.push(context, MaterialPageRoute(builder: (context) => BookingScreen(),));
+               },
+               child:  CustomButton(buttonColor: CustomColors.primaryColor, text: 'Book Now', textSize: 16, width: double.infinity, height: 45,),
              
-              GestureDetector(
-                onTap: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => BookingScreen(),));
-                },
-                child: CustomButton(
-                  buttonColor:CustomColors.primaryColor, text: 'Book Now', height: 30, width: 110, textSize: 16,),
               ),
-             
-             
-             ],),
-
-           )
+           ),
 
 
 

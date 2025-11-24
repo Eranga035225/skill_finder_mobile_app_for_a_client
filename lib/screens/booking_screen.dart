@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import '../components/custom_button.dart';
 import '../utils/custom_colors.dart';
 import 'profile_screen.dart';
 
@@ -168,6 +169,9 @@ class _BookingScreenState extends State<BookingScreen> {
               Text('\$132'),
 
             ],),
+
+            SizedBox(height:90,),
+            CustomButton(buttonColor: CustomColors.primaryColor, text: 'Confirm Booking', textSize: 18, width: double.infinity, height: 50,),
            
 
 
