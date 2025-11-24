@@ -97,11 +97,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
            Padding(
              padding: const EdgeInsets.all(16.0),
              child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
               CustomButton(buttonColor: Colors.grey.shade200, text: 'Message', height: 30, width: 110, textSize: 16,),
              
-              CustomButton(buttonColor:CustomColors.primaryColor.withAlpha(20), text: 'Book Now', height: 30, width: 110, textSize: 16,),
+              CustomButton(buttonColor:CustomColors.primaryColor, text: 'Book Now', height: 30, width: 110, textSize: 16,),
              
              
              ],),
@@ -321,7 +321,7 @@ class ListItem extends StatelessWidget {
         width: 40,
         height: 40,
         decoration: BoxDecoration(
-          color: CustomColors.primaryColor.withAlpha(20),
+          color: Colors.grey.shade100,
           borderRadius: BorderRadius.circular(8),
         ),
         child: Center(child: icon),
@@ -340,7 +340,7 @@ class ListItem extends StatelessWidget {
         ? Text(
             subtitle!,
             style: TextStyle(
-              color:CustomColors.primaryColor,
+              color:Colors.grey.shade600,
               fontWeight: FontWeight.w300,
             ),
           )
