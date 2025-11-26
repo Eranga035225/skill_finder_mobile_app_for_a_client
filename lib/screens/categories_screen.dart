@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import 'package:skill_finder/components/custom_button.dart';
 import 'package:skill_finder/providers/user_provider.dart';
 import 'package:skill_finder/screens/admin/service_providers_add_screen.dart';
+import 'package:skill_finder/screens/profile_screen.dart';
 import 'package:skill_finder/screens/service_provider_list.dart';
 import 'package:skill_finder/utils/custom_colors.dart';
 
@@ -29,7 +30,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             icon: Icon(Icons.calendar_month),
             label: 'Bookings',
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
+          BottomNavigationBarItem(
+            icon: GestureDetector(onTap: () {}, child: Icon(Icons.person)),
+            label: 'Profile',
+          ),
         ],
       ),
 

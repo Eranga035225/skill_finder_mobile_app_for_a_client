@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:skill_finder/screens/auth_screen.dart';
-import 'package:skill_finder/screens/service_provider_list.dart';
 import '../components/custom_button.dart';
 import '../utils/custom_colors.dart';
 

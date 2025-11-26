@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:skill_finder/models/service_provider_model.dart';
+import 'package:skill_finder/screens/profile_screen.dart';
 
 class ServiceProviderList extends StatefulWidget {
   final String categoryName;
@@ -90,19 +91,30 @@ class _ServiceProviderListState extends State<ServiceProviderList> {
                       itemBuilder: (context, index) {
                         final p = providers[index];
 
-                        return ListTile(
-                          leading: CircleAvatar(
-                            radius: 30,
-                            child: Text(p.name.isNotEmpty ? p.name[0] : '?'),
-                          ),
-                          title: Text(
-                            p.name,
-                            style: TextStyle(fontWeight: FontWeight.bold),
-                          ),
-                          subtitle: Text(p.email),
-                          trailing: Text(
-                            p.initialRating.toString(),
-                            style: TextStyle(fontSize: 15),
+                        return GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    ProfileScreen(provider: p),
+                              ),
+                            );
+                          },
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              radius: 30,
+                              child: Text(p.name.isNotEmpty ? p.name[0] : '?'),
+                            ),
+                            title: Text(
+                              p.name,
+                              style: TextStyle(fontWeight: FontWeight.bold),
+                            ),
+                            subtitle: Text(p.email),
+                            trailing: Text(
+                              p.initialRating.toString(),
+                              style: TextStyle(fontSize: 15),
+                            ),
                           ),
                         );
                       },

@@ -3,8 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:skill_finder/components/custom_button.dart';
 import 'package:skill_finder/components/custom_text_field.dart';
 import 'package:skill_finder/providers/auth_state_provider.dart';
-import 'package:skill_finder/screens/categories_screen.dart';
-import 'package:skill_finder/screens/service_provider_list.dart';
 import 'package:skill_finder/utils/custom_colors.dart';
 
 class AuthScreen extends StatefulWidget {
