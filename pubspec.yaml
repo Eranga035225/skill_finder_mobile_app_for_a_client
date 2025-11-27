@@ -43,6 +43,7 @@ dependencies:
   flutter_easyloading: ^3.0.5
   provider: ^6.1.5+1
   url_launcher: ^6.3.2
+  http: ^1.6.0
 
 dev_dependencies:
   flutter_test:
