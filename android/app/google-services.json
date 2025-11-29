@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "791782965584",
+    "project_id": "skill-finder-02",
+    "storage_bucket": "skill-finder-02.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:791782965584:android:ed4aa4c647884cd8f06c55",
+        "android_client_info": {
+          "package_name": "com.example.skill_finder"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDi8lzbrTLe7849QT_M_rhN_Y3oNniARyA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
